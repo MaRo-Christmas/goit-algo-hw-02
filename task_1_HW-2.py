@@ -6,16 +6,13 @@ import random
 
 request_queue = queue.Queue()
 
-
 def generate_request_id():
     return int(time.time() * 1000) + random.randint(0, 999)
-
 
 def generate_request():
     request_id = generate_request_id()
     request_queue.put(request_id)
     print(f"Нова заявка додана до черги: {request_id}")
-
 
 def process_request():
     while True:
@@ -28,7 +25,6 @@ def process_request():
             print("Черга пуста")
             time.sleep(1)
 
-
 def main():
     try:
         threading.Thread(target=process_request, daemon=True).start()
@@ -38,7 +34,6 @@ def main():
             time.sleep(random.uniform(0.5, 2))
     except KeyboardInterrupt:
         print("Програма завершена користувачем")
-
 
 if __name__ == "__main__":
     main()
